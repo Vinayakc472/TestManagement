@@ -1,0 +1,2 @@
+sap.ui.require(["sap/fe/test/JourneyRunner","testing/test/integration/FirstJourney","testing/test/integration/pages/TestsList","testing/test/integration/pages/TestsObjectPage","testing/test/integration/pages/QuestionsObjectPage"],function(e,t,s,n,i){"use strict";var e=new e({launchUrl:sap.ui.require.toUrl("testing")+"/index.html"});e.run({pages:{onTheTestsList:s,onTheTestsObjectPage:n,onTheQuestionsObjectPage:i}},t.run)});
+//# sourceMappingURL=opaTests.qunit.js.map

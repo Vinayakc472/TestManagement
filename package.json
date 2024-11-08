@@ -1,0 +1,73 @@
+{
+  "name": "TESTING",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap-cloud-sdk/http-client": "^3.22.2",
+    "@sap-cloud-sdk/util": "^3.22.2",
+    "@sap/cds": "^8",
+    "@sap/cds-common-content": "^2.1.0",
+    "express": "^4",
+    "@sap/xssec": "^4",
+    "@cap-js/hana": "^1"
+  },
+  "devDependencies": {
+    "@cap-js/cds-types": "^0.6",
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^8",
+    "@sap/ux-specification": "UI5-1.129"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "build:cf": "cd app/testing && npm install && npm run build",
+    "watch-testing": "cds watch --open testing/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "sapux": [
+    "app/testing"
+  ],
+  "cds": {
+    "requires": {
+      "uaa": {
+        "kind": "xsuaa"
+      },
+      "[development]": {
+        "auth": {
+          "kind": "mocked",
+          "users": {
+            "test.manager@tester.sap.com": {
+              "password": "initial",
+              "roles": [
+                "TestManager"
+              ]
+            },
+            "alice": {
+              "roles": [
+                "TestManager"
+              ]
+            }
+          }
+        }
+      },
+      "API_BUSINESS_PARTNER": {
+        "kind": "odata-v2",
+        "model": "srv/external/API_BUSINESS_PARTNER",
+          "credentials": {
+            "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER",
+            "headers": {
+              "APIKey": "A1ZSgutTqMo8Bi6lcUkyrL10snGtPyB1"
+            }
+          }
+      },
+      "[production]": {
+        "db": "hana",
+        "auth": "xsuaa"
+      }
+    },
+    "sql": {
+      "native_hana_associations": false
+    }
+  }
+}
